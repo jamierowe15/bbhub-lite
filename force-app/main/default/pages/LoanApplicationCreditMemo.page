@@ -1,0 +1,53 @@
+<apex:page standardController="Loan_Application__c" renderAs="pdf" showHeader="false"
+           sidebar="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false">
+    <!--
+      LoanApplicationCreditMemo (Visualforce - legacy UI technology)
+      Renders a one-page PDF credit memo for a Loan Application.
+      Open it with:  /apex/LoanApplicationCreditMemo?id=<Loan Application Id>
+      Uses the standard controller, so field-level security and sharing are
+      enforced automatically and no Apex is needed.
+    -->
+    <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; font-size: 11pt; color: #1b1b1b; }
+                h1 { color: #1F3864; font-size: 18pt; border-bottom: 2px solid #1F3864; padding-bottom: 4px; }
+                h2 { color: #1F3864; font-size: 13pt; margin-top: 18px; }
+                table { width: 100%; border-collapse: collapse; }
+                td { padding: 6px; border-bottom: 1px solid #dddddd; }
+                td.label { width: 40%; font-weight: bold; }
+                .footer { margin-top: 30px; font-size: 8pt; color: #666666; }
+            </style>
+        </head>
+        <body>
+            <h1>Credit Memo - {!Loan_Application__c.Name}</h1>
+
+            <h2>Application</h2>
+            <table>
+                <tr><td class="label">Business</td><td>{!Loan_Application__c.Account__r.Name}</td></tr>
+                <tr><td class="label">Requested Amount</td><td><apex:outputField value="{!Loan_Application__c.Requested_Amount__c}"/></td></tr>
+                <tr><td class="label">Status</td><td><apex:outputField value="{!Loan_Application__c.Status__c}"/></td></tr>
+                <tr><td class="label">Review Tier</td><td><apex:outputField value="{!Loan_Application__c.Review_Tier__c}"/></td></tr>
+            </table>
+
+            <h2>Financials</h2>
+            <table>
+                <tr><td class="label">Annual Revenue</td><td><apex:outputField value="{!Loan_Application__c.Annual_Revenue__c}"/></td></tr>
+                <tr><td class="label">Existing Debt</td><td><apex:outputField value="{!Loan_Application__c.Existing_Debt__c}"/></td></tr>
+                <tr><td class="label">Years in Business</td><td><apex:outputField value="{!Loan_Application__c.Years_In_Business__c}"/></td></tr>
+                <tr><td class="label">Credit Score</td><td><apex:outputField value="{!Loan_Application__c.Credit_Score__c}"/></td></tr>
+            </table>
+
+            <h2>Risk Assessment</h2>
+            <table>
+                <tr><td class="label">Risk Score (0-100)</td><td><apex:outputField value="{!Loan_Application__c.Risk_Score__c}"/></td></tr>
+                <tr><td class="label">Risk Rating</td><td><apex:outputField value="{!Loan_Application__c.Risk_Rating__c}"/></td></tr>
+                <tr><td class="label">Decision Date</td><td><apex:outputField value="{!Loan_Application__c.Decision_Date__c}"/></td></tr>
+            </table>
+
+            <div class="footer">
+                Generated {!NOW()} by BBHub-lite. Portfolio demo with fictional data, not a real bank system.
+            </div>
+        </body>
+    </html>
+</apex:page>

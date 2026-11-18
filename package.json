@@ -1,0 +1,15 @@
+{
+  "name": "bbhub-lite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "BBHub-lite: a Salesforce business-banking credit pipeline portfolio project (Apex, LWC, Flow, Platform Events, Visualforce, CI/CD).",
+  "scripts": {
+    "test": "npm run test:unit",
+    "test:unit": "sfdx-lwc-jest",
+    "test:unit:coverage": "sfdx-lwc-jest --coverage",
+    "test:unit:watch": "sfdx-lwc-jest --watch"
+  },
+  "devDependencies": {
+    "@salesforce/sfdx-lwc-jest": "^7.0.1"
+  }
+}

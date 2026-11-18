@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="BBHub-lite: Business Loan Pipeline" icon-name="standard:opportunity">
+        <div class="slds-p-horizontal_medium">
+            <!-- Summary tiles -->
+            <div class="slds-grid slds-wrap slds-gutters_small slds-m-bottom_medium">
+                <template for:each={summary} for:item="tile">
+                    <div key={tile.status} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5 slds-p-bottom_small">
+                        <div class="slds-box slds-text-align_center tile" data-status={tile.status}>
+                            <p class="slds-text-title_caps">{tile.status}</p>
+                            <p class="slds-text-heading_large tile-total">{tile.total}</p>
+                            <p class="slds-text-body_small">{tile.amountLabel}</p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Filter -->
+            <lightning-combobox
+                class="status-filter slds-m-bottom_small"
+                label="Filter by status"
+                value={selectedStatus}
+                options={statusOptions}
+                onchange={handleStatusChange}
+            ></lightning-combobox>
+
+            <template lwc:if={error}>
+                <div class="slds-text-color_error slds-m-bottom_small error-message" role="alert">{error}</div>
+            </template>
+
+            <template lwc:if={isSaving}>
+                <lightning-spinner alternative-text="Saving" size="small"></lightning-spinner>
+            </template>
+
+            <!-- Work queue -->
+            <template lwc:if={hasRows}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={rows}
+                    columns={columns}
+                    hide-checkbox-column
+                    onrowaction={handleRowAction}
+                ></lightning-datatable>
+            </template>
+            <template lwc:else>
+                <p class="slds-text-color_weak slds-p-around_medium empty-message">No applications for this filter.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

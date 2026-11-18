@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Application__c</fullName>
+    <description>The application this decision belongs to.</description>
+    <label>Loan Application</label>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <referenceTo>Loan_Application__c</referenceTo>
+    <relationshipLabel>Decision Logs</relationshipLabel>
+    <relationshipName>Decision_Logs</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

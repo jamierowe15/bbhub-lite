@@ -1,0 +1,9 @@
+.tile {
+    border-top: 4px solid #1f3864;
+    background: #ffffff;
+}
+
+.tile-total {
+    color: #1f3864;
+    font-weight: 700;
+}

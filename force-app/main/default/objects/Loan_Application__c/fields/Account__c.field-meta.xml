@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <description>The business customer (Account) applying for credit.</description>
+    <label>Business</label>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Loan Applications</relationshipLabel>
+    <relationshipName>Loan_Applications</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

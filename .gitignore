@@ -1,0 +1,17 @@
+# Salesforce CLI local state
+.sf/
+.sfdx/
+.localdevserver/
+# Node
+node_modules/
+coverage/
+# Script output
+setup-log.txt
+test-results/
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+# Never commit credentials
+authurl.txt
+*.key

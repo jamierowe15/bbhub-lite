@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Set_Branch_Tier</name>
+        <label>Set Branch Tier</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Review_Tier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Branch Lending</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Executive_Tier</name>
+        <label>Set Executive Tier</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Review_Tier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Executive Credit Committee</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Senior_Tier</name>
+        <label>Set Senior Tier</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Review_Tier__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Senior Credit Analyst</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Route_By_Amount</name>
+        <label>Route By Amount</label>
+        <locationX>314</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Set_Branch_Tier</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Up to 250K</defaultConnectorLabel>
+        <rules>
+            <name>Over_1M</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Requested_Amount__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>1000000.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Executive_Tier</targetReference>
+            </connector>
+            <label>Over 1M</label>
+        </rules>
+        <rules>
+            <name>Over_250K</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Requested_Amount__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>250000.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Senior_Tier</targetReference>
+            </connector>
+            <label>Over 250K</label>
+        </rules>
+    </decisions>
+    <description>Before-save record-triggered flow. Routes each loan application to a review tier based on the requested amount. Declarative automation (no code) that a business analyst could maintain.</description>
+    <environments>Default</environments>
+    <interviewLabel>Loan Application - Route For Review {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Loan Application - Route For Review</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Route_By_Amount</targetReference>
+        </connector>
+        <object>Loan_Application__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
