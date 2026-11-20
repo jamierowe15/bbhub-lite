@@ -42,9 +42,9 @@ A small version of the kind of CRM + credit platform a bank's business banking t
 ## Quick start (Windows)
 
 1. Get a free org at **https://developer.salesforce.com/signup** (or use a Trailhead Playground).
-2. Unzip this folder, then **double-click `setup.cmd`**.
+2. Clone the repo (`git clone https://github.com/jamierowe15/bbhub-lite.git`) or download the ZIP from the green **Code** button, then **double-click `setup.cmd`**.
 
-The script installs anything that's missing (Node.js, Git, Salesforce CLI), logs you in, deploys the project, runs every test, loads demo data, opens the app, and can push the code to GitHub. If a step fails, fix it and resume with `.\setup.ps1 -From <step>`.
+The script installs anything that's missing (Node.js, Git, Salesforce CLI), logs you in, deploys the project, runs every Apex and Jest test, loads demo data, and opens the app. If a step fails, fix it and resume with `.\setup.ps1 -From <step>`.
 
 Manual equivalent:
 
